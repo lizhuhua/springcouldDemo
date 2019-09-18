@@ -1,0 +1,36 @@
+server:
+  port: 8081
+# DataSource Config
+spring:
+  application:
+    name: user
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/prj_data?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true 
+    username: root
+    password: xxadmin
+eureka:
+  client:
+    # 关闭eureka client
+    # enabled: false
+    # 注册自身到eureka服务器
+    registerWithEureka: true
+    # 表示是否从eureka服务器获取注册信息
+    fetchRegistry: false
+    # 客户端从Eureka Server集群里更新Eureka Server信息的频率
+    eureka-service-url-poll-interval-seconds: 60
+    # 定义从注册中心获取注册服务的信息
+    registry-fetch-interval-seconds: 5
+    # 设置eureka服务器所在的地址，查询服务和注册服务都需要依赖这个地址
+    service-url:
+      defaultZone: http://localhost:9001/eureka/
+ribbon:
+  eureka:
+    enabled: true
+# Logger Config
+logging:
+  level:
+    com.lawt.repository.mapper: debug
+
+mybatis-plus:
+  mapper-locations: classpath:/com/xiaowutong/user/dao/*Dao.xml

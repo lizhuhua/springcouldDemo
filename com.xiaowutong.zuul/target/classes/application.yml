@@ -1,0 +1,26 @@
+server:
+  port: 8000
+spring:
+  application:
+    name: zuul
+# DataSource Config
+eureka:
+  client:
+    # 关闭eureka client
+    # enabled: false
+    # 注册自身到eureka服务器
+    registerWithEureka: true
+    # 表示是否从eureka服务器获取注册信息
+    fetchRegistry: true
+    # 客户端从Eureka Server集群里更新Eureka Server信息的频率
+    eureka-service-url-poll-interval-seconds: 60
+    # 定义从注册中心获取注册服务的信息
+    registry-fetch-interval-seconds: 5
+    # 设置eureka服务器所在的地址，查询服务和注册服务都需要依赖这个地址
+    service-url:
+      defaultZone: http://localhost:9001/eureka/
+zuul:
+  routes:
+    api-a:
+      path: /user/**
+      serviceId: user  #如果是/user/**路径下的请求，则跳转到user
